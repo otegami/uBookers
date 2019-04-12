@@ -63,3 +63,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #Use gem:'devise' for Authenticating a user by user_id and email..
 gem 'devise'
+
+#Use function of image by refile, resize the image by refile-mini_magick
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick" 
+
+#css get easier by bootstrap
+gem 'bootstrap-sass', '~>3.3.6'
+gem 'jquery-rails'

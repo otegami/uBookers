@@ -1,15 +1,14 @@
 class BooksController < ApplicationController
-  def new
-  end
 
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
-    @book.save
-    redirect_to books_path
+    flash[:notice] = "Successfuly" if @book.save
+    redirect_to book_path(@book)
   end
 
   def index
+    @user = User.find(current_user.id)
     #to create book post
     @book = Book.new
     #To show all book posts
@@ -18,16 +17,22 @@ class BooksController < ApplicationController
 
   def show
     #to show the book details
-    @book = Book.find(params[:id])
+    @book = Book.new
+    @detail_book = Book.find(params[:id])
+    @user = @detail_book.user
   end
 
   def edit
     @book = Book.find(params[:id])
+    if @book.user.id != current_user.id
+      flash[:notice] = "You don't have the right to edit it"
+      redirect_to book_path(@book)
+    end
   end
 
   def update
     book = Book.find(params[:id])
-    book.update(book_params)
+    flash[:notice] = "Successfuly" if book.update(book_params)
     redirect_to book_path(book)
   end
 
