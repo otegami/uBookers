@@ -2,6 +2,12 @@
   <div class="container-fluid masonry-container">
 <div class="row">
   <div class="col-sm-4 col-sm-offset-4">
+  <% if @book.errors.any? %>
+    <%= @book.errors.count %>error<br>
+    <% @book.errors.full_messages.each do |message| %>
+      <%= message %><br>
+    <% end %>
+  <% end %>
   <%= form_for(@book) do |f| %>
     <div class="form-group has-icon">
       <label class="control-label sr-only">Title</label>

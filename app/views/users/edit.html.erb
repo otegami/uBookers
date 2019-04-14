@@ -3,6 +3,12 @@
 <div class="row">
 <div class="col-sm-2 col-sm-offset-1">
   <div class="row">
+    <% if @user.errors.any? %>
+      <%= @user.errors.count %> error<br>
+      <%= @user.errors.full_messages.each do |message| %>
+        <%= message %><br>
+      <% end %>
+    <% end %>
     <%= form_for(@user) do |f| %>
     <h1>UserInfo</h1>
       <div class="form-group has-icon">
